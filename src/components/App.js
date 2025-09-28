@@ -94,7 +94,7 @@ class App extends Component {
 
   checkout() {
     // Generate an error
-    // this.myCodeIsMorePerfect();
+    // this.myCodeIsEvenMorePerfect();
 
     const order = {
       email: this.email,
@@ -113,6 +113,8 @@ class App extends Component {
       body: JSON.stringify(order),
       headers: new Headers({ "X-Transaction-ID": transactionId }),
     };
+
+    this.anotherNonExistingMethod()
 
     /*
       POST request to /checkout endpoint.
