@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import * as Sentry from "@sentry/react";
+import * as Sentry from "@sentry/react";
 import "./App.css";
 import wrenchImg from "../assets/wrench.png";
 import nailsImg from "../assets/nails.png";
@@ -93,9 +93,6 @@ class App extends Component {
   }
 
   checkout() {
-    // Generate an error
-    // this.myCodeIsEvenMorePerfect();
-
     const order = {
       email: this.email,
       cart: this.state.cart,
@@ -114,7 +111,9 @@ class App extends Component {
       headers: new Headers({ "X-Transaction-ID": transactionId }),
     };
 
-    this.anotherNonExistingMethod()
+    Sentry.logger.debug("checkout", {
+      total: this.state.cart.reduce((t, i) => t + i.price, 0)
+    })
 
     /*
       POST request to /checkout endpoint.
